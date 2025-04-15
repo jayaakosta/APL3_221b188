@@ -1,0 +1,56 @@
+Docker Basics:
+
+Why do we need Docker?  
+
+--> To solve problem "It is not working on my system"
+
+
+
+How Docker solve this problem?
+
+--> There are basically 3 layers i.e., application layer, OS kernel and hardware. Docker create virtualization layer in the application layer.
+
+--> Suppose we are using Node and MongoDB then docker creates a single unit of it and shift it to other teammates (shifts whole environment of application layer). That is its like creating package.
+
+
+
+Docker works on application layer. 
+Virtual machine works on application layer along with OS kernel.
+
+
+
+In terminal:
+
+--> docker run hello-world
+--> docker pull hello-world
+    (tag means version)
+    (we create image of application and push it on docker hub)
+    (image - classes, container - objects)
+--> docker run hello-world
+    (o/p: Hello from Docker!)
+--> docker pull ubuntu
+--> docker run -it ubuntu
+    --> ls
+    --> mkdir juet
+    --> ls
+    --> cd juet
+    --> touch emp
+    --> ls
+    --> exit (exit from Linux)
+
+
+
+Docker Network:
+
+--> Creates isolated network so that 2 containers can communicate without hassle (one is mongo and another is mongo-express (admin interface)).
+
+--> docker network create mongo-network
+--> docker network ls
+--> docker run -d -p 27017(local host):27017(default mongo) --name mongo--network mongo-network -e MONGO_INITDB_ROOT_PASSWORD=admin mongo
+--> docker ps (which containers are running in this moment)
+--> docker ps -a (images which are available)
+--> docker network inspect mongo-network
+--> docker run -d -p 8081:8081 --name mongo-express MONGODB_ADMINUSER=admin -e ME_CONFIG_MONGODB_URL="mongodb://admin:admin@mongo:27017" mongo-express
+
+ 
+
